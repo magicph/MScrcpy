@@ -479,6 +479,8 @@ void Dialog::onDeviceConnected(bool success, const QString &serial, const QStrin
     }
 
     GroupController::instance().addDevice(serial);
+    
+    on_applyScriptBtn_clicked();
 }
 
 void Dialog::onDeviceDisconnected(QString serial)
