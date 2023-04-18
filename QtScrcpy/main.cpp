@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
     qInfo() << QObject::tr("Welcome to MScrcpy Enjoy!");
     
     qInfo() << QObject::tr("This software is completely free and not for sale. Use it at your own risk.");
-    qInfo() << QString(MScrcpy VERSION %1).arg(QCoreApplication::applicationVersion());
+    qInfo() << QString("MScrcpy VERSION %1").arg(QCoreApplication::applicationVersion());
     qInfo() << QObject::tr("Always get latest version on our official site.");
     int ret = a.exec();
     delete g_mainDlg;
