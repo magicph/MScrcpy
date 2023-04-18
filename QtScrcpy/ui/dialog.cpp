@@ -163,6 +163,8 @@ void Dialog::initUI()
     ui->lockOrientationBox->addItem("180");
     ui->lockOrientationBox->addItem("270");
     ui->lockOrientationBox->setCurrentIndex(0);
+    
+    on_refreshGameScriptBtn_clicked();
 }
 
 void Dialog::updateBootConfig(bool toView)
