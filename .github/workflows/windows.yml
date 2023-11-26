@@ -20,9 +20,9 @@ jobs:
           - qt-arch: win64_msvc2019_64
             msvc-arch: x64
             qt-arch-install: msvc2019_64
-          - qt-arch: win32_msvc2019
-            msvc-arch: x86
-            qt-arch-install: msvc2019
+         # - qt-arch: win32_msvc2019
+           # msvc-arch: x86
+           # qt-arch-install: msvc2019
     # job env,所有steps都可以访问
     # 不同级别env详解 https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#env
     # 使用表达式语法${{}}访问上下文 https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions
