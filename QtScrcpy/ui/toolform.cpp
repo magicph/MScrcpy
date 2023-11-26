@@ -105,10 +105,10 @@ QString s_keyMapPaths = "";
 
 const QString getKeyMapPaths()
 {
-    if (s_keyMapPath.isEmpty()) {
+    if (s_keyMapPaths.isEmpty()) {
         s_keyMapPaths = QString::fromLocal8Bit(qgetenv("QTSCRCPY_KEYMAP_PATH"));
         QFileInfo fileInfo(s_keyMapPaths);
-        if (s_keyMapPath.isEmpty() || !fileInfo.isDir()) {
+        if (s_keyMapPaths.isEmpty() || !fileInfo.isDir()) {
             s_keyMapPaths = QCoreApplication::applicationDirPath() + "/keymap";
         }
     }
