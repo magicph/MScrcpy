@@ -106,6 +106,7 @@
 #define SERIAL_NICK_NAME_DEF "Phone"
 
 QString Config::s_configPath = "";
+QString Config::currentKeyMap = "";
 
 Config::Config(QObject *parent) : QObject(parent)
 {
