@@ -30,7 +30,7 @@ class Config : public QObject
 {
     Q_OBJECT
 public:
-    QString currentKeyMap = "";
+    static QString currentKeyMap = "";
     static Config &getInstance();
 
     // config
