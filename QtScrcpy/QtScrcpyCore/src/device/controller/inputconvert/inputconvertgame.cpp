@@ -4,11 +4,9 @@
 #include <QTimer>
 #include <QTime>
 #include <QRandomGenerator>
-#include <QFile>
-#include <QFileDialog>
 
 #include "inputconvertgame.h"
-#include "config.h"
+
 #define CURSOR_POS_CHECK 50
 
 InputConvertGame::InputConvertGame(Controller *controller) : InputConvertNormal(controller) {
@@ -107,7 +105,7 @@ void InputConvertGame::keyEvent(const QKeyEvent *from, const QSize &frameSize, c
         }
 
         switch (node.type) {
-        // Processing the steering wheel
+        // 处理方向盘
         case KeyMap::KMT_STEER_WHEEL:
             processSteerWheel(node, from);
             return;
@@ -658,41 +656,9 @@ void InputConvertGame::stopMouseMoveTimer()
     }
 }
 
-QString s_keyMapPaths = "";
-
-const QString getKeyMapPaths()
-{
-    if (s_keyMapPaths.isEmpty()) {
-        s_keyMapPaths = QString::fromLocal8Bit(qgetenv("QTSCRCPY_KEYMAP_PATH"));
-        QFileInfo fileInfo(s_keyMapPaths);
-        if (s_keyMapPaths.isEmpty() || !fileInfo.isDir()) {
-            s_keyMapPaths = QCoreApplication::applicationDirPath() + "/keymap";
-        }
-    }
-    return s_keyMapPaths;
-}
-
-QString getGameScript(const QString &fileName)
-{
-    if (fileName.isEmpty()) {
-        return "";
-    }
-
-    QFile loadFile(getKeyMapPaths() + "/" + fileName);
-    if (!loadFile.open(QIODevice::ReadOnly)) {
-        //outLog("open file failed:" + fileName, true);
-        return "";
-    }
-
-    QString ret = loadFile.readAll();
-    loadFile.close();
-    return ret;
-}
-
-
 bool InputConvertGame::switchGameMap()
 {
-    loadKeyMap(getGameScript(Config::currentKeyMap));
+
     m_gameMap = !m_gameMap;
     qInfo() << QString("current keymap mode: %1").arg(m_gameMap ? "custom" : "normal");
 

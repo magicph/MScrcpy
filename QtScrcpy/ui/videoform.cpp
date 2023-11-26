@@ -12,7 +12,8 @@
 #include <QTimer>
 #include <QWindow>
 #include <QtWidgets/QHBoxLayout>
-
+#include <QFile>
+#include <QFileDialog>
 #include "config.h"
 #include "iconhelper.h"
 #include "qyuvopenglwidget.h"
@@ -691,6 +692,38 @@ void VideoForm::wheelEvent(QWheelEvent *event)
     }
 }
 
+QString s_keyMapPaths = "";
+
+const QString getKeyMapPaths()
+{
+    if (s_keyMapPaths.isEmpty()) {
+        s_keyMapPaths = QString::fromLocal8Bit(qgetenv("QTSCRCPY_KEYMAP_PATH"));
+        QFileInfo fileInfo(s_keyMapPaths);
+        if (s_keyMapPaths.isEmpty() || !fileInfo.isDir()) {
+            s_keyMapPaths = QCoreApplication::applicationDirPath() + "/keymap";
+        }
+    }
+    return s_keyMapPaths;
+}
+
+QString getGameScript(const QString &fileName)
+{
+    if (fileName.isEmpty()) {
+        return "";
+    }
+
+    QFile loadFile(getKeyMapPaths() + "/" + fileName);
+    if (!loadFile.open(QIODevice::ReadOnly)) {
+        //outLog("open file failed:" + fileName, true);
+        return "";
+    }
+
+    QString ret = loadFile.readAll();
+    loadFile.close();
+    return ret;
+}
+
+
 void VideoForm::keyPressEvent(QKeyEvent *event)
 {
     auto device = qsc::IDeviceManage::getInstance().getDevice(m_serial);
@@ -699,6 +732,11 @@ void VideoForm::keyPressEvent(QKeyEvent *event)
     }
     if (Qt::Key_Escape == event->key() && !event->isAutoRepeat() && isFullScreen()) {
         switchFullScreen();
+    }
+    if (Qt::Key_Escape == event->key() && !event->isAutoRepeat()) {
+        //switchFullScreen();
+        qInfo() << Config::currentKeyMap;
+        device->updateScript(getGameScript(Config::currentKeyMap));
     }
     QString posTip = QString(R"("pos": click)");
             qInfo() << posTip.toStdString().c_str();
