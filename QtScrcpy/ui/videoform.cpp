@@ -68,14 +68,14 @@ void VideoForm::initUI()
     ft.setPointSize(15);
     ft.setWeight(QFont::Light);
     ft.setBold(true);
+
     m_fpsLabel->setFont(ft);
     m_fpsLabel->move(5, 15);
     m_fpsLabel->setMinimumWidth(100);
     m_fpsLabel->setStyleSheet(R"(QLabel {color: #00FF00;})");
 
     QPointer<QLabel> tk = new QLabel(m_videoWidget);
-    
-    tk->move(5, 15);
+    tk->move(0.49, 0.49);
     //tk->setMinimumWidth(100);
     tk->setStyleSheet(R"(QLabel {color: #00FF00;})");
     tk->setText(QString("FPS:%1").arg("test")); 
