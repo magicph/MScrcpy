@@ -7,8 +7,9 @@
 
 struct UserBootConfig
 {
+    QString currentKeyMap = "";
     QString recordPath = "";
-    quint32 bitRate = 2000000;
+    quint32 bitRate = 8000000;
     int maxSizeIndex = 0;
     int recordFormatIndex = 0;
     int lockOrientationIndex = 0;
@@ -20,8 +21,8 @@ struct UserBootConfig
     bool autoOffScreen    = false;
     bool framelessWindow  = false;
     bool keepAlive        = false;
-    bool simpleMode       = false;
-    bool autoUpdateDevice = true;
+    bool simpleMode       = true;
+    bool autoUpdateDevice = false;
 };
 
 class QSettings;

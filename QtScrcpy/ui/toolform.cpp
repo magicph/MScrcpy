@@ -2,15 +2,18 @@
 #include <QHideEvent>
 #include <QMouseEvent>
 #include <QShowEvent>
-
+#include <QFile>
+#include <QFileDialog>
 #include "iconhelper.h"
 #include "toolform.h"
 #include "ui_toolform.h"
 #include "videoform.h"
 #include "../groupcontroller/groupcontroller.h"
+#include "config.h"
 
 ToolForm::ToolForm(QWidget *adsorbWidget, AdsorbPositions adsorbPos) : MagneticWidget(adsorbWidget, adsorbPos), ui(new Ui::ToolForm)
 {
+    
     ui->setupUi(this);
     setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
     //setWindowFlags(windowFlags() & ~Qt::WindowMinMaxButtonsHint);
@@ -106,13 +109,13 @@ void ToolForm::on_fullScreenBtn_clicked()
     }
 
     dynamic_cast<VideoForm*>(parent())->switchFullScreen();*/
-    auto curSerial = ui->serialBox->currentText().trimmed();
-    auto device = qsc::IDeviceManage::getInstance().getDevice(curSerial);
+    UserBootConfig config = Config::getInstance().getUserBootConfig();
+    auto device = qsc::IDeviceManage::getInstance().getDevice(m_serial);
     if (!device) {
         return;
     }
 
-    device->updateScript(getGameScript(ui->gameBox->currentText()));
+    device->updateScript(getGameScript(config.currentKeyMap));
 }
 
 QString s_keyMapPath = "";
