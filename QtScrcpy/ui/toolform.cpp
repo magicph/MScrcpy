@@ -123,7 +123,7 @@ QString getGameScript(const QString &fileName)
 
     QFile loadFile(getKeyMapPath() + "/" + fileName);
     if (!loadFile.open(QIODevice::ReadOnly)) {
-        outLog("open file failed:" + fileName, true);
+        //outLog("open file failed:" + fileName, true);
         return "";
     }
 
@@ -145,7 +145,7 @@ void ToolForm::on_fullScreenBtn_clicked()
     if (!device) {
         return;
     }
-
+    
     device->updateScript(getGameScript(config.currentKeyMap));
 }
 
