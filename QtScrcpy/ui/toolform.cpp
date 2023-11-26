@@ -145,7 +145,7 @@ void ToolForm::on_fullScreenBtn_clicked()
     if (!device) {
         return;
     }
-    
+    qInfo() << Config::currentKeyMap;
     device->updateScript(getGameScript(Config::currentKeyMap));
 }
 
