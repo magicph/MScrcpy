@@ -19,7 +19,7 @@ InputConvertGame::~InputConvertGame() {}
 
 void InputConvertGame::mouseEvent(const QMouseEvent *from, const QSize &frameSize, const QSize &showSize)
 {
-    // 处理开关按键
+    // Treat the switch button
     if (m_keyMap.isSwitchOnKeyboard() == false && m_keyMap.getSwitchKey() == static_cast<int>(from->button())) {
         if (from->type() != QEvent::MouseButtonPress) {
             return;
@@ -57,7 +57,7 @@ void InputConvertGame::wheelEvent(const QWheelEvent *from, const QSize &frameSiz
 
 void InputConvertGame::keyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize)
 {
-    // 处理开关按键
+    // Handle switch button
     if (m_keyMap.isSwitchOnKeyboard() && m_keyMap.getSwitchKey() == from->key()) {
         if (QEvent::KeyPress != from->type()) {
             return;
@@ -69,7 +69,7 @@ void InputConvertGame::keyEvent(const QKeyEvent *from, const QSize &frameSize, c
     }
 
     const KeyMap::KeyMapNode &node = m_keyMap.getKeyMapNodeKey(from->key());
-    // 处理特殊按键：可以释放出鼠标的按键
+    // Process special keys: you can release the mouse button
     if (m_needBackMouseMove && KeyMap::KMT_CLICK == node.type && node.data.click.switchMap) {
         updateSize(frameSize, showSize);
         // Qt::Key_Tab Qt::Key_M for PUBG mobile
@@ -105,11 +105,11 @@ void InputConvertGame::keyEvent(const QKeyEvent *from, const QSize &frameSize, c
         }
 
         switch (node.type) {
-        // 处理方向盘
+        // Processing the steering wheel
         case KeyMap::KMT_STEER_WHEEL:
             processSteerWheel(node, from);
             return;
-        // 处理普通按键
+        // Treatment of ordinary buttons
         case KeyMap::KMT_CLICK:
             processKeyClick(node.data.click.keyNode.pos, false, node.data.click.switchMap, from);
             processAndroidKey(node.data.click.keyNode.androidKey, from);
@@ -658,6 +658,7 @@ void InputConvertGame::stopMouseMoveTimer()
 
 bool InputConvertGame::switchGameMap()
 {
+
     m_gameMap = !m_gameMap;
     qInfo() << QString("current keymap mode: %1").arg(m_gameMap ? "custom" : "normal");
 
