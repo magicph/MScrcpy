@@ -10,7 +10,7 @@
 #include "videoform.h"
 #include "../groupcontroller/groupcontroller.h"
 #include "config.h"
-
+#include "dialog.h"
 ToolForm::ToolForm(QWidget *adsorbWidget, AdsorbPositions adsorbPos) : MagneticWidget(adsorbWidget, adsorbPos), ui(new Ui::ToolForm)
 {
     
@@ -101,24 +101,6 @@ void ToolForm::hideEvent(QHideEvent *event)
     qDebug() << "hide event";
 }
 
-
-
-QString getGameScript(const QString &fileName)
-{
-    if (fileName.isEmpty()) {
-        return "";
-    }
-
-    QFile loadFile(getKeyMapPath() + "/" + fileName);
-    if (!loadFile.open(QIODevice::ReadOnly)) {
-        //outLog("open file failed:" + fileName, true);
-        return "";
-    }
-
-    QString ret = loadFile.readAll();
-    loadFile.close();
-    return ret;
-}
 
 void ToolForm::on_fullScreenBtn_clicked()
 {
