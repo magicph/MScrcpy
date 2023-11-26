@@ -25,7 +25,7 @@ VideoForm::VideoForm(bool framelessWindow, bool skin, QWidget *parent) : QWidget
 {
     ui->setupUi(this);
     initUI();
-    installShortcut();
+    //installShortcut();
     updateShowSize(size());
     bool vertical = size().height() > size().width();
     if (m_skin) {
@@ -73,6 +73,13 @@ void VideoForm::initUI()
     m_fpsLabel->setMinimumWidth(100);
     m_fpsLabel->setStyleSheet(R"(QLabel {color: #00FF00;})");
 
+    QPointer<QLabel> tk = new QLabel(m_videoWidget);
+    
+    tk->move(5, 15);
+    tk->setMinimumWidth(100);
+    tk->setStyleSheet(R"(QLabel {color: #00FF00;})");
+    tk->setText(QString("FPS:%1").arg("test")); 
+    
     setMouseTracking(true);
     m_videoWidget->setMouseTracking(true);
     ui->keepRatioWidget->setMouseTracking(true);
@@ -579,7 +586,7 @@ void VideoForm::mousePressEvent(QMouseEvent *event)
         if (event->button() == Qt::LeftButton) {
             qreal x = event->localPos().x() / m_videoWidget->size().width();
             qreal y = event->localPos().y() / m_videoWidget->size().height();
-            QString posTip = QString(R"("pos": {"x": %1, "y": %2})").arg(x).arg(y);
+            QString posTip = QString(R"(test "pos": {"x": %1, "y": %2})").arg(x).arg(y);
             qInfo() << posTip.toStdString().c_str();
         }
     } else {
