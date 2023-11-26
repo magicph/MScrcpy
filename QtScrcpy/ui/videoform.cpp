@@ -76,7 +76,7 @@ void VideoForm::initUI()
     QPointer<QLabel> tk = new QLabel(m_videoWidget);
     
     tk->move(5, 15);
-    tk->setMinimumWidth(100);
+    //tk->setMinimumWidth(100);
     tk->setStyleSheet(R"(QLabel {color: #00FF00;})");
     tk->setText(QString("FPS:%1").arg("test")); 
     
