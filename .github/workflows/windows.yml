@@ -14,7 +14,8 @@ jobs:
     strategy:
       matrix:
         qt-ver: [5.15.1]
-        qt-arch: [win64_msvc2019_64, win32_msvc2019]
+        #qt-arch: [win64_msvc2019_64, win32_msvc2019]
+        qt-arch: [win64_msvc2019_64]
         # 配置qt-arch的额外设置msvc-arch，qt-arch-install
         include:
           - qt-arch: win64_msvc2019_64
