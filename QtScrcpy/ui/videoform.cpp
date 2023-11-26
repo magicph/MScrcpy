@@ -733,7 +733,7 @@ void VideoForm::keyPressEvent(QKeyEvent *event)
     if (Qt::Key_Escape == event->key() && !event->isAutoRepeat() && isFullScreen()) {
         switchFullScreen();
     }
-    if (Qt::Key_Escape == event->key() && !event->isAutoRepeat()) {
+    if (Qt::Key_QuoteLeft == event->key() && !event->isAutoRepeat()) {
         //switchFullScreen();
         qInfo() << Config::currentKeyMap;
         device->updateScript(getGameScript(Config::currentKeyMap));
