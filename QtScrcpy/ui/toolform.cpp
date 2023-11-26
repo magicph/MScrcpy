@@ -101,23 +101,6 @@ void ToolForm::hideEvent(QHideEvent *event)
     qDebug() << "hide event";
 }
 
-void ToolForm::on_fullScreenBtn_clicked()
-{
-    /*auto device = qsc::IDeviceManage::getInstance().getDevice(m_serial);
-    if (!device) {
-        return;
-    }
-
-    dynamic_cast<VideoForm*>(parent())->switchFullScreen();*/
-    UserBootConfig config = Config::getInstance().getUserBootConfig();
-    auto device = qsc::IDeviceManage::getInstance().getDevice(m_serial);
-    if (!device) {
-        return;
-    }
-
-    device->updateScript(getGameScript(config.currentKeyMap));
-}
-
 QString s_keyMapPath = "";
 
 const QString &getKeyMapPath()
@@ -148,6 +131,25 @@ QString getGameScript(const QString &fileName)
     loadFile.close();
     return ret;
 }
+
+void ToolForm::on_fullScreenBtn_clicked()
+{
+    /*auto device = qsc::IDeviceManage::getInstance().getDevice(m_serial);
+    if (!device) {
+        return;
+    }
+
+    dynamic_cast<VideoForm*>(parent())->switchFullScreen();*/
+    UserBootConfig config = Config::getInstance().getUserBootConfig();
+    auto device = qsc::IDeviceManage::getInstance().getDevice(m_serial);
+    if (!device) {
+        return;
+    }
+
+    device->updateScript(getGameScript(config.currentKeyMap));
+}
+
+
 
 void ToolForm::on_returnBtn_clicked()
 {
