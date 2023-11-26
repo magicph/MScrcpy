@@ -100,12 +100,50 @@ void ToolForm::hideEvent(QHideEvent *event)
 
 void ToolForm::on_fullScreenBtn_clicked()
 {
-    auto device = qsc::IDeviceManage::getInstance().getDevice(m_serial);
+    /*auto device = qsc::IDeviceManage::getInstance().getDevice(m_serial);
     if (!device) {
         return;
     }
 
-    dynamic_cast<VideoForm*>(parent())->switchFullScreen();
+    dynamic_cast<VideoForm*>(parent())->switchFullScreen();*/
+    auto curSerial = ui->serialBox->currentText().trimmed();
+    auto device = qsc::IDeviceManage::getInstance().getDevice(curSerial);
+    if (!device) {
+        return;
+    }
+
+    device->updateScript(getGameScript(ui->gameBox->currentText()));
+}
+
+QString s_keyMapPath = "";
+
+const QString &getKeyMapPath()
+{
+    if (s_keyMapPath.isEmpty()) {
+        s_keyMapPath = QString::fromLocal8Bit(qgetenv("QTSCRCPY_KEYMAP_PATH"));
+        QFileInfo fileInfo(s_keyMapPath);
+        if (s_keyMapPath.isEmpty() || !fileInfo.isDir()) {
+            s_keyMapPath = QCoreApplication::applicationDirPath() + "/keymap";
+        }
+    }
+    return s_keyMapPath;
+}
+
+QString getGameScript(const QString &fileName)
+{
+    if (fileName.isEmpty()) {
+        return "";
+    }
+
+    QFile loadFile(getKeyMapPath() + "/" + fileName);
+    if (!loadFile.open(QIODevice::ReadOnly)) {
+        outLog("open file failed:" + fileName, true);
+        return "";
+    }
+
+    QString ret = loadFile.readAll();
+    loadFile.close();
+    return ret;
 }
 
 void ToolForm::on_returnBtn_clicked()
