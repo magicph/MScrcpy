@@ -116,7 +116,7 @@ void ToolForm::on_fullScreenBtn_clicked()
         return;
     }
     
-    device->updateScript(getGameScript(config.currentKeyMap));
+    device->updateScript(Dialog::getGameScript(config.currentKeyMap));
 }
 
 
