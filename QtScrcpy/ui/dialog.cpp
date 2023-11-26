@@ -561,6 +561,7 @@ void Dialog::on_refreshGameScriptBtn_clicked()
         fileInfo = list.at(i);
         ui->gameBox->addItem(fileInfo.fileName());
     }
+    Config::currentKeyMap = ui->gameBox->currentText();
 }
 
 void Dialog::on_applyScriptBtn_clicked()
@@ -572,8 +573,7 @@ void Dialog::on_applyScriptBtn_clicked()
     }
 
     device->updateScript(getGameScript(ui->gameBox->currentText()));
-    UserBootConfig config = Config::getInstance().getUserBootConfig();
-    config.currentKeyMap = ui->gameBox->currentText();
+    
 }
 
 void Dialog::on_recordScreenCheck_clicked(bool checked)

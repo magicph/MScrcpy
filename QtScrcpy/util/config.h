@@ -7,7 +7,7 @@
 
 struct UserBootConfig
 {
-    QString currentKeyMap = "";
+    
     QString recordPath = "";
     quint32 bitRate = 8000000;
     int maxSizeIndex = 0;
@@ -30,7 +30,7 @@ class Config : public QObject
 {
     Q_OBJECT
 public:
-
+    QString currentKeyMap = "";
     static Config &getInstance();
 
     // config

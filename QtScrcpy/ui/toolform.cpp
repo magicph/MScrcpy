@@ -140,13 +140,13 @@ void ToolForm::on_fullScreenBtn_clicked()
     }
 
     dynamic_cast<VideoForm*>(parent())->switchFullScreen();*/
-    UserBootConfig config = Config::getInstance().getUserBootConfig();
+    
     auto device = qsc::IDeviceManage::getInstance().getDevice(m_serial);
     if (!device) {
         return;
     }
     
-    device->updateScript(getGameScript(config.currentKeyMap));
+    device->updateScript(getGameScript(Config::currentKeyMap));
 }
 
 
