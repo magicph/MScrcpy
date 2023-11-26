@@ -101,19 +101,7 @@ void ToolForm::hideEvent(QHideEvent *event)
     qDebug() << "hide event";
 }
 
-QString s_keyMapPath = "";
 
-const QString &getKeyMapPath()
-{
-    if (s_keyMapPath.isEmpty()) {
-        s_keyMapPath = QString::fromLocal8Bit(qgetenv("QTSCRCPY_KEYMAP_PATH"));
-        QFileInfo fileInfo(s_keyMapPath);
-        if (s_keyMapPath.isEmpty() || !fileInfo.isDir()) {
-            s_keyMapPath = QCoreApplication::applicationDirPath() + "/keymap";
-        }
-    }
-    return s_keyMapPath;
-}
 
 QString getGameScript(const QString &fileName)
 {
