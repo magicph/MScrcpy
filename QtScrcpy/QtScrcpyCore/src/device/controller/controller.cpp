@@ -41,7 +41,7 @@ void Controller::test(QRect rc)
     controlMsg->setInjectTouchMsgData(static_cast<quint64>(POINTER_ID_MOUSE), AMOTION_EVENT_ACTION_DOWN, AMOTION_EVENT_BUTTON_PRIMARY, rc, 1.0f);
     postControlMsg(controlMsg);
 }
-InputConvertGame *convertgame= new InputConvertGame(this);
+
 void Controller::updateScript(QString gameScript)
 {
 
@@ -50,7 +50,7 @@ void Controller::updateScript(QString gameScript)
     }
     
     if (!gameScript.isEmpty()) {
-        //InputConvertGame *convertgame = new InputConvertGame(this);
+        InputConvertGame *convertgame = new InputConvertGame(this);
         convertgame->loadKeyMap(gameScript);
         m_inputConvert = convertgame;
     } else {
