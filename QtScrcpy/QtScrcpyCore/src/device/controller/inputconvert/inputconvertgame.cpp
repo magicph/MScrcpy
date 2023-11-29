@@ -112,11 +112,11 @@ void InputConvertGame::keyEvent(const QKeyEvent *from, const QSize &frameSize, c
         // Treatment of ordinary buttons
         case KeyMap::KMT_CLICK:
             processKeyClick(node.data.click.keyNode.pos, false, node.data.click.switchMap, from);
-            processAndroidKey(node.data.click.keyNode.androidKey, from);
+            //processAndroidKey(node.data.click.keyNode.androidKey, from);
             return;
         case KeyMap::KMT_CLICK_TWICE:
             processKeyClick(node.data.clickTwice.keyNode.pos, true, false, from);
-            processAndroidKey(node.data.clickTwice.keyNode.androidKey, from);
+            //processAndroidKey(node.data.clickTwice.keyNode.androidKey, from);
             return;
         case KeyMap::KMT_CLICK_MULTI:
             processKeyClickMulti(node.data.clickMulti.keyNode.delayClickNodes, node.data.clickMulti.keyNode.delayClickNodesCount, from);
@@ -125,7 +125,7 @@ void InputConvertGame::keyEvent(const QKeyEvent *from, const QSize &frameSize, c
             processKeyDrag(node.data.drag.keyNode.pos, node.data.drag.keyNode.extendPos, from);
             return;
         case KeyMap::KMT_ANDROID_KEY:
-            processAndroidKey(node.data.androidKey.keyNode.androidKey, from);
+            //processAndroidKey(node.data.androidKey.keyNode.androidKey, from);
         default:
             break;
         }
