@@ -73,12 +73,14 @@ bool AudioOutput::runSndcpyProcess(const QString &serial, int port, bool wait)
     params << serial;
     params << QString("%1").arg(port);
     m_sndcpy.start("sndcpy.bat", params);
+    qInfo() << "starting sndcpy.bat";
 #else
     QStringList params;
     params << "sndcpy.sh";
     params << serial;
     params << QString("%1").arg(port);
     m_sndcpy.start("bash", params);
+    qInfo() << "starting sndcpy.sh";
 #endif
 
     if (!wait) {
