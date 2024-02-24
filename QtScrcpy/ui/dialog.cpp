@@ -139,7 +139,7 @@ void Dialog::initUI()
     setAttribute(Qt::WA_DeleteOnClose);
     //setWindowFlags(windowFlags() | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint | Qt::CustomizeWindowHint);
 
-    setWindowTitle(Config::getInstance().getTitle());
+    //setWindowTitle(Config::getInstance().getTitle());
 
 #ifdef Q_OS_WIN32
     WinUtils::setDarkBorderToWindow((HWND)this->winId(), true);
