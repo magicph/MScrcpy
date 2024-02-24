@@ -140,7 +140,7 @@ void Dialog::initUI()
     //setWindowFlags(windowFlags() | Qt::WindowMinimizeButtonHint | Qt::WindowCloseButtonHint | Qt::CustomizeWindowHint);
 
     //setWindowTitle(Config::getInstance().getTitle());
-
+    setWindowTitle("MSCRCPY");
 #ifdef Q_OS_WIN32
     WinUtils::setDarkBorderToWindow((HWND)this->winId(), true);
 #endif
