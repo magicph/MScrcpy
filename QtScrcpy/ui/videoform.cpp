@@ -75,11 +75,11 @@ void VideoForm::initUI()
     m_fpsLabel->setMinimumWidth(100);
     m_fpsLabel->setStyleSheet(R"(QLabel {color: #00FF00;})");
 
-    QPointer<QLabel> tk = new QLabel(m_videoWidget);
+    /*QPointer<QLabel> tk = new QLabel(m_videoWidget);
     tk->move(0.49, 0.49);
     //tk->setMinimumWidth(100);
     tk->setStyleSheet(R"(QLabel {color: #00FF00;})");
-    tk->setText(QString("FPS:%1").arg("test")); 
+    tk->setText(QString("FPS:%1").arg("test")); */
     
     setMouseTracking(true);
     m_videoWidget->setMouseTracking(true);
