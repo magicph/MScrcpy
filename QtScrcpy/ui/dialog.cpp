@@ -479,7 +479,13 @@ void Dialog::onDeviceConnected(bool success, const QString &serial, const QStrin
     }
 
     GroupController::instance().addDevice(serial);
-    
+
+    if (ui->serialBox->count() == 0) {
+        qWarning() << "No device is connected!";
+        return;
+    }
+
+    m_audioOutput.start(ui->serialBox->currentText(), 28200);
     
 }
 
