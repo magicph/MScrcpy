@@ -110,10 +110,10 @@ int main(int argc, char *argv[])
     g_mainDlg->show();
 
     qInfo() << QObject::tr("Welcome to MScrcpy Enjoy!");
-    
-    qInfo() << QObject::tr("This software is completely free and not for sale. Use it at your own risk.");
+    qInfo() << QObject::tr("This software is designed to cast your phone to the Windows PC via USB cable. The mobile device can be synchronised to the big screen instantaneously once you plug in the cable.");
+    //qInfo() << QObject::tr("This software is completely free and not for sale. Use it at your own risk.");
     qInfo() << QString("MScrcpy VERSION %1").arg(QCoreApplication::applicationVersion());
-    qInfo() << QObject::tr("Always get latest version on our official site.");
+    //qInfo() << QObject::tr("Always get latest version on our official site.");
     int ret = a.exec();
     delete g_mainDlg;
 
